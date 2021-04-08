@@ -1,7 +1,7 @@
 const player1 = {
     name: 'SCORPION',
     hp: 50,
-    img: 'строка',
+    img: 'http://reactmarathon-api.herokuapp.com/assets/scorpion.gif',
     weapon: ['палка', 'топор', 'лопата'],
     attack: function() {
         console.log(this.name + ' Fight...');
@@ -11,14 +11,14 @@ const player1 = {
 const player2 = {
     name: 'SUB-ZERO',
     hp: 80,
-    img: 'строка',
+    img: 'http://reactmarathon-api.herokuapp.com/assets/subzero.gif',
     weapon: ['нож', 'вилы', 'лед'],
     attack: function() {
         console.log(this.name + ' Fight...');
     }
 };
 
-function createPlayer(player, name, hp) {
+function createPlayer(player, actor) {
     const $player1 = document.createElement('div');
     $player1.classList.add(player);
     const $progressbar = document.createElement('div');
@@ -33,14 +33,14 @@ function createPlayer(player, name, hp) {
     const $character = document.createElement('div');
     $character.classList.add('character');
     const $img = document.createElement('img');
-    $img.src = 'http://reactmarathon-api.herokuapp.com/assets/scorpion.gif';
+    $img.src = actor.img;
     $character.appendChild($img);
     $player1.appendChild($character);
     const $arenas = document.querySelector('.arenas');
     $arenas.appendChild($player1);
-    $life.style.width = hp + '%';
-    $name.innerText = name;
+    $life.style.width = actor.hp + '%';
+    $name.innerText = actor.name;
 };
 
-createPlayer('player1', 'SCORPION', 50);
-createPlayer('player2', 'SUB-ZERO', 80);
+createPlayer('player1', player1);
+createPlayer('player2', player2);
