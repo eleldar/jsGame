@@ -58,7 +58,7 @@ function createPlayer(actor) {
 
 function changeHP(player) {
     const $playerLife = document.querySelector('.player' + player.player + ' .life');
-    const n = 20;
+    const n = Math.ceil(Math.random() * 20);
     if (player.hp - n < 0) {
         player.hp = 0
     }
