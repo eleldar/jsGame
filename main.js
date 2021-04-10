@@ -38,21 +38,14 @@ function createPlayer(actor) {
     const $life = createElement('div', 'life');
     const $name = createElement('div', 'name');
     const $img = createElement('img');
-
     $life.style.width = actor.hp + '%';
     $name.innerText = actor.name;
     $img.src = actor.img;
-
     $progressbar.appendChild($name);
     $progressbar.appendChild($life);
-
     $character.appendChild($img);
-
     $player.appendChild($progressbar);
     $player.appendChild($character);
-
-
-
     return $player;
 };
 
@@ -66,22 +59,26 @@ function changeHP(player) {
     player.hp -= n;
     }
     $playerLife.style.width = player.hp + '%';
-
-    if (player.hp <= 0) {
-        $arenas.appendChild(playerLose(player.name))
-    }
 }
 
 function playerLose(name) {
     const $loseTitle = createElement('div', 'loseTitle')
-    $loseTitle.innerText = name + ' lose';
+    $loseTitle.innerText = name + ' wins';
     return $loseTitle;
 }
 
 $randomButton.addEventListener('click', function () {
     changeHP(player1);
     changeHP(player2);
-    })
+    if (player1.hp == 0) {
+        $arenas.appendChild(playerLose(player2.name));
+        $randomButton.disabled = true;
+    }
+    else if (player2.hp == 0) {
+        $arenas.appendChild(playerLose(player1.name));
+        $randomButton.disabled = true;
+    }
+})
 
 $arenas.appendChild(createPlayer(player1));
 $arenas.appendChild(createPlayer(player2));
