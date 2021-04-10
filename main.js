@@ -58,10 +58,16 @@ function createPlayer(actor) {
 
 function changeHP(player) {
     const $playerLife = document.querySelector('.player' + player.player + ' .life');
-    player.hp -= 20;
+    const n = 20;
+    if (player.hp - n < 0) {
+        player.hp = 0
+    }
+    else {
+    player.hp -= n;
+    }
     $playerLife.style.width = player.hp + '%';
 
-    if (player.hp < 0) {
+    if (player.hp <= 0) {
         $arenas.appendChild(playerLose(player.name))
     }
 }
